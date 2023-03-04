@@ -54,22 +54,32 @@ const mainMenu = () => {
       });
   };
   
-   
+
   const viewEmployees = () => {
-      connection.query('SELECT * FROM employee', (err, res) => {
-          if (err) throw err;
-          console.table(res);
-          mainMenu();
-      });
+    const query = `
+      SELECT e.id, e.first_name, e.last_name, r.title, d.name
+      FROM employee e
+      JOIN role r ON e.role_id = r.id
+      JOIN department d ON r.department_id = d.id;
+    `;
+    connection.query(query, (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      mainMenu();
+    });
   };
   
-    
   const viewRoles = () => {
-      connection.query('SELECT * FROM role', (err, res) => {
-          if (err) throw err;
-          console.table(res);
-          mainMenu();
-      });
+    const query = `
+      SELECT r.id, r.title, r.salary, d.name AS department
+      FROM role r
+      INNER JOIN department d ON r.department_id = d.id
+    `;
+    connection.query(query, (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      mainMenu();
+    });
   };
   
   
