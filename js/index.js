@@ -41,7 +41,7 @@ const mainMenu = () => {
           case 'Add a Department':
             addDepartment();
             break;
-          case 'Update Employee id':
+          case 'Update Employee Roles':
             updateEmployeeRole();
             break;
           case 'Quit':
