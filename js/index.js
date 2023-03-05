@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const connection = require('../config/connection');
 require('console.table');
 
+
 const mainMenu = () => {
   inquirer
     .prompt({
@@ -161,7 +162,7 @@ const mainMenu = () => {
           {
             name: 'salary',
             type: 'input',
-            message: 'Enter the role/s salary'
+            message: 'Enter the salary'
           },
           {
             name: 'department_id',
@@ -224,7 +225,7 @@ const updateEmployeeRole = () => {
     .then((answer) => {
         connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [answer.new_role_id, answer.employee_id], (err) => {
             if (err) throw err;
-            console.log('Employee role updated successfully!');
+            console.log('Employee id updated successfully!');
             mainMenu();
         });
     });
